@@ -1,74 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# import streamlit as st
-# import pandas as pd
-# import joblib
-# from sklearn.preprocessing import LabelEncoder
-# 
-# # Load the trained Random Forest model
-# model = joblib.load('diabetes_prediction_sylhetdb_rf_model.pkl')
-# 
-# # Define a dictionary to map gender values to 0 (male) and 1 (female)
-# gender_mapping = {'Masculino': 0, 'Feminino': 1}
-# 
-# # Function to preprocess user input data
-# def preprocess_input(idade, genero, poliuria, polidipsia, perda_peso_repentina, polifagia, visao_embacada, irritabilidade, cicatrizacao_lenta, alopecia, obesidade):
-#     # Encode gender
-#     genero_codificado = gender_mapping[genero]
-# 
-#     # Create a DataFrame with the user input
-#     user_data = pd.DataFrame({
-#         'idade': [idade],
-#         'genero': [genero_codificado],
-#         'poliuria': [poliuria],
-#         'polidipsia': [polidipsia],
-#         'perda_peso_repentina': [perda_peso_repentina],
-#         'polifagia': [polifagia],
-#         'visao_embacada': [visao_embacada],
-#         'irritabilidade': [irritabilidade],
-#         'cicatrizacao_lenta': [cicatrizacao_lenta],
-#         'alopecia': [alopecia],
-#         'obesidade': [obesidade]
-#     })
-# 
-#     return user_data
-# 
-# # Streamlit app
-# def main():
-#     st.title("Aplicativo de Previsão de Diabetes")
-# 
-#     # User input form
-#     st.header("Informações do Usuário")
-#     idade = st.slider("Idade", 0, 100, 30)
-#     genero = st.selectbox("Gênero", ("Masculino", "Feminino"))
-#     poliuria = st.checkbox("Poliúria")
-#     polidipsia = st.checkbox("Polidipsia")
-#     perda_peso_repentina = st.checkbox("Perda de Peso Repentina")
-#     polifagia = st.checkbox("Polifagia")
-#     visao_embacada = st.checkbox("Visão Embaçada")
-#     irritabilidade = st.checkbox("Irritabilidade")
-#     cicatrizacao_lenta = st.checkbox("Cicatrização Lenta")
-#     alopecia = st.checkbox("Alopecia")
-#     obesidade = st.checkbox("Obesidade")
-# 
-#     if st.button("Prever"):
-#         # Preprocess user input
-#         user_data = preprocess_input(idade, genero, poliuria, polidipsia, perda_peso_repentina, polifagia, visao_embacada, irritabilidade, cicatrizacao_lenta, alopecia, obesidade)
-# 
-#         # Make a prediction
-#         prediction = model.predict_proba(user_data)[:, 1]
-# 
-#         st.header("Resultado da Previsão")
-#         st.write(f"Probabilidade de desenvolver diabetes: {prediction[0]:.2f}")
-# 
-# if __name__ == '__main__':
-#     main()
-# 
-
-# In[1]:
-
-
 import streamlit as st
 import pandas as pd
 import joblib
@@ -129,7 +58,11 @@ def main():
         prediction = model.predict_proba(user_data)[:, 1]
 
         st.header("Resultado da Previsão")
-        st.write(f"Probabilidade de desenvolver diabetes: {prediction[0]:.2f}")
+      if prediction == 1:
+        st.write(f"Você tem altas chances de ter ou vir a desenvolver diabetes")
+      else:
+        st.write(f"Você tem baixas chances de ter diabetes")
+        
 
 if __name__ == '__main__':
     main()
