@@ -47,28 +47,35 @@ def main():
     st.markdown(
     """
     <style>
-    body {
-        margin: 0;
-        padding: 0;
+    .stApp {
+        margin-top: 0;
+        margin-bottom: 0;
     }
     </style>
     """,
     unsafe_allow_html=True,
     )
     
-    # formulário para input do usuário
-    idade = st.slider("Idade", 0, 100, 30)
-    poliuria = st.checkbox("Produção excessiva de urina", help="Poliúria")
-    polidipsia = st.checkbox("Sede excessiva", help="Polidipsia")
-    perda_peso_repentina = st.checkbox("Perda significativa de peso sem motivo aparente", help="Perda de Peso Repentina")
-    polifagia = st.checkbox("Aumento anormal do apetite", help="Polifagia")
-    visao_embacada = st.checkbox("Visão embaçada ou turva", help="Visão Embaçada")
-    irritabilidade = st.checkbox("Alterações frequentes de humor", help="Irritabilidade")
-    cicatrizacao_lenta = st.checkbox("Feridas que demoram a cicatrizar", help="Cicatrização Lenta")
-    alopecia = st.checkbox("Perda de cabelo", help="Alopecia")
+    # criar layout de 2 colunas
+    column_widths = [1, 2]
+    left_column, right_column = st.columns(column_widths)
+
+    # colocar checkboxes à direita
+    with right_column:
+        poliuria = st.checkbox("Produção excessiva de urina", help="Poliúria")
+        polidipsia = st.checkbox("Sede excessiva", help="Polidipsia")
+        perda_peso_repentina = st.checkbox("Perda significativa de peso sem motivo aparente", help="Perda de Peso Repentina")
+        polifagia = st.checkbox("Aumento anormal do apetite", help="Polifagia")
+        visao_embacada = st.checkbox("Visão embaçada ou turva", help="Visão Embaçada")
+        irritabilidade = st.checkbox("Alterações frequentes de humor", help="Irritabilidade")
+        cicatrizacao_lenta = st.checkbox("Feridas que demoram a cicatrizar", help="Cicatrização Lenta")
+        alopecia = st.checkbox("Perda de cabelo", help="Alopecia")
     
-    peso = st.number_input("Peso (kg)", 0.0, format="%0.1f", key="peso")
-    altura = st.number_input("Altura (cm)", 0.0, format="%0.1f", key="altura")
+    # colocar numéricos à esquerda
+    with left_column:
+        idade = st.slider("Idade", 0, 100, 30)
+        peso = st.number_input("Peso (kg)", 0.0, format="%0.1f", key="peso")
+        altura = st.number_input("Altura (cm)", 0.0, format="%0.1f", key="altura")
 
 
     st.markdown(
